@@ -13,6 +13,13 @@ jobs:
     runs-on: self-hosted
 
     steps:
+    
+    - uses: docker-practice/actions-setup-docker@master
+    - name: Install Dependencies
+      timeout-minutes: 12
+      run: |
+        set -x
+  
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Build the Custom Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
